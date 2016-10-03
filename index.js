@@ -6,7 +6,10 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
+var count = 0;
 io.on('connection', function(socket){
+  count ++;
+    io.emit('chat message', count +' attendees');
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
   });
