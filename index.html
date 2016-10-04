@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Socket.IO chat</title>
+    <title>Live</title>
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body { font: 13px Helvetica, Arial; }
@@ -11,9 +11,11 @@
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #messages li { padding: 5px 10px; }
       #messages li:nth-child(odd) { background: #eee; }
+	  #id {color: gold;}
     </style>
   </head>
   <body>
+    <h4>在线 <h5 id="count"></h5> 人</h4>
     <ul id="messages"></ul>
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
@@ -35,6 +37,9 @@
 			$('#messages').prepend($('<li>').text(msg));
 		}
       });
+	  socket.on('count', function(count){
+		$('#count').val(count);
+	  });
     </script>
   </body>
 </html>

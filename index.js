@@ -9,10 +9,14 @@ app.get('/', function(req, res){
 var count = 0;
 io.on('connection', function(socket){
   count ++;
-    io.emit('chat message', count +' attendees');
+    io.emit('count', count);
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
   });
+});
+io.on('disconnect', function () {
+    count --;
+    io.emit('count', count);
 });
 
 http.listen(process.env.PORT || 3000, function(){
