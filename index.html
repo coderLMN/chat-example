@@ -28,7 +28,12 @@
         return false;
       });
       socket.on('chat message', function(msg){
-        $('#messages').prepend($('<li>').text(msg));
+		if(msg.substring(0,3) == 'sa:'){
+			$('#messages').prepend($('<li style="color:red;">').text(msg));
+		}
+        else{
+			$('#messages').prepend($('<li>').text(msg));
+		}
       });
     </script>
   </body>
