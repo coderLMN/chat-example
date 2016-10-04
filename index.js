@@ -13,11 +13,12 @@ io.on('connection', function(socket){
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
   });
-});
-io.on('disconnect', function () {
+  io.on('disconnect', function () {
     count --;
     io.emit('count', count);
+  });
 });
+
 
 http.listen(process.env.PORT || 3000, function(){
   console.log('listening on *:3000');
